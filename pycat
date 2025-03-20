@@ -1,0 +1,19 @@
+#!/usr/bin/env python3.12.3
+import sys
+import argparse
+
+parser=argparse.ArgumentParser(description="python based command to read file")
+parser.add_argument("filename", help="it is the name or path of the file")
+parser.add_argument("--lines", "-l", type=int, help="number of lines to read")
+args=parser.parse_args()
+try:
+    with open(args.filename, "r")  as fp:
+	    lines=fp.readlines()
+	    limit=args.lines
+	    if limit:
+		    lines=lines[0:limit]
+	    for line in lines:
+		    print(line.strip())
+except FileNotFoundError:			
+		print(f"pycat: {args.filename}: No such file or directory")	
+	
